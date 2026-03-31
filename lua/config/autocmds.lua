@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.treesitter.start()
   end,
 })
+
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     -- Telescope transparente

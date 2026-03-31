@@ -1,18 +1,6 @@
 console.log("amor");
+console.log("hola")
 
-amor
-amor
-amor
-amor
-amor
-amor
-amor
-amor
-amor
-amor
-amor
-amor
-amor
 amor
 amor
 amor

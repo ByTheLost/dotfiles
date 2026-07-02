@@ -1,20 +1,29 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
+  event = "VeryLazy",
   main = "ibl",
   opts = {
     indent = {
-      char = "│",
-      tab_char = "│",
+      char = "▏",
+      tab_char = "▏",
     },
+
     exclude = {
       filetypes = {
+        "Trouble",
+        "alpha",
+        "dashboard",
+        "starter",
+        "snacks_dashboard",
         "help",
         "lazy",
+        "mason",
         "neo-tree",
-        "TelescopePrompt",
+        "notify",
+        "TelescopePromptePrompt",
         "toggleterm",
-        "Trouble",
-        "oil"
+        "trouble",
+        "oil",
       },
       buftypes = { "terminal" },
     },

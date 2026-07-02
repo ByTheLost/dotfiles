@@ -1,14 +1,15 @@
 return {
   "williamboman/mason.nvim",
-  dependencies = {
-    "williamboman/mason-lspconfig.nvim",
+  lazy = true,
+  cmd = {
+    "Mason",
+    "MasonInstall",
+    "MasonUpdate",
+    "MasonUninstall",
   },
-
-  config = function()
-    require("mason").setup()
-
-    require("mason-lspconfig").setup({
-      ensure_installed = { "lua_ls", "ts_ls" },
-    })
-  end,
+  opts = {
+    ui = {
+      border = "rounded",
+    },
+  },
 }

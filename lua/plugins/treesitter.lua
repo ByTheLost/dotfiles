@@ -1,10 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  event = { "BufReadPre", "BufNewfile" },
   build = ":TSUpdate",
-  -- event = { "BufReadPost", "BufNewFile" },
-
-  lazy = false,
-  priority = 1000,
 
   config = function()
     local ok, configs = pcall(require, "nvim-treesitter.configs")
@@ -33,7 +30,7 @@ return {
       },
 
       indent = {
-        enable = true,
+        enable = false,
       },
     })
   end,

@@ -1,5 +1,9 @@
+-- Bufferline.nvim: Display and manage buffers in a tab-like interface
+-- URL: https://github.com/akinsho/bufferline.nvim
+
 return {
   "akinsho/bufferline.nvim",
+  event = "VeryLazy",
   dependencies = "nvim-tree/nvim-web-devicons",
   config = function()
     require("bufferline").setup({
@@ -21,7 +25,7 @@ return {
         persist_buffer_sort = true,
         separator_style = "thin",
         enforce_regular_tabs = false,
-        always_show_bufferline = true,
+        always_show_bufferline = false,
         offsets = {
           {
             filetype = "NvimTree",
@@ -44,5 +48,6 @@ return {
     map("n", "<leader>bp", "<cmd>BufferLineCyclePrev<CR>", { desc = "Buffer anterior" })
     map("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", { desc = "Cerrar buffer" })
     map("n", "<leader>bl", "<cmd>BufferLinePick<CR>", { desc = "Ir a buffer" })
+    map("n", "<leader>bt", "<cmd>BufferLineTogglePin<CR>", { desc = "Alterna fijación del buffer" })
   end,
 }

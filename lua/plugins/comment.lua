@@ -1,5 +1,9 @@
+-- Comment.nvim: Fast and smart code commenting for Neovim
+-- URL: https://github.com/numToStr/Comment.nvim
+
 return {
   "numToStr/Comment.nvim",
+  event = "VeryLazy",
   config = function()
     require("Comment").setup({
       padding = true,

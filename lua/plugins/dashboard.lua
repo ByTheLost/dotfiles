@@ -1,0 +1,101 @@
+return {
+  -- "nvimdev/dashboard-nvim",
+  -- lazy = false,
+  --
+  -- opts = function()
+  --   local logo = [[
+  --      ██████╗ ██╗  ██╗ ██████╗ ███████╗████████╗██╗   ██╗██╗███╗   ███╗
+  --     ██╔════╝ ██║  ██║██╔═══██╗██╔════╝╚══██╔══╝██║   ██║██║████╗ ████║
+  --     ██║  ███╗███████║██║   ██║███████╗   ██║   ██║   ██║██║██╔████╔██║
+  --     ██║   ██║██╔══██║██║   ██║╚════██║   ██║   ██║   ██║██║██║╚██╔╝██║
+  --     ╚██████╔╝██║  ██║╚██████╔╝███████║   ██║   ╚██████╔╝██║██║ ╚═╝ ██║
+  --      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝╚═╝     ╚═╝
+  --   ]]
+  --
+  --   logo = string.rep("\n", 8) .. logo .. "\n\n"
+  --
+  --   local opts = {
+  --     theme = "doom",
+  --
+  --     hide = {
+  --       statusline = true,
+  --       tabline = true,
+  --     },
+  --
+  --     config = {
+  --       header = vim.split(logo, "\n"),
+  --
+  --       center = {
+  --         {
+  --           icon = "  ",
+  --           desc = "Find File",
+  --           key = "f",
+  --           action = "Telescope find_files",
+  --         },
+  --         {
+  --           icon = "  ",
+  --           desc = "New File",
+  --           key = "n",
+  --           action = "enew",
+  --         },
+  --         {
+  --           icon = "  ",
+  --           desc = "Find Text",
+  --           key = "g",
+  --           action = "Telescope live_grep",
+  --         },
+  --         {
+  --           icon = "  ",
+  --           desc = "Recent Files",
+  --           key = "r",
+  --           action = "Telescope oldfiles",
+  --         },
+  --         {
+  --           icon = "  ",
+  --           desc = "Config",
+  --           key = "c",
+  --           action = "edit $MYVIMRC",
+  --         },
+  --         {
+  --           icon = "  ",
+  --           desc = "Restore Session",
+  --           key = "s",
+  --           action = "lua require('persistence').load()",
+  --         },
+  --         {
+  --           icon = "󰒲  ",
+  --           desc = "Lazy",
+  --           key = "l",
+  --           action = "Lazy",
+  --         },
+  --         {
+  --           icon = "  ",
+  --           desc = "Quit",
+  --           key = "q",
+  --           action = "qa",
+  --         },
+  --       },
+  --
+  --       footer = function()
+  --         local ok, lazy = pcall(require, "lazy")
+  --         if not ok then return { "Neovim" } end
+  --
+  --         local stats = lazy.stats()
+  --         local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+  --
+  --         return {
+  --           "⚡ Loaded "
+  --             .. stats.loaded
+  --             .. "/"
+  --             .. stats.count
+  --             .. " plugins in "
+  --             .. ms
+  --             .. "ms",
+  --         }
+  --       end,
+  --     },
+  --   }
+  --
+  --   return opts
+  -- end,
+}

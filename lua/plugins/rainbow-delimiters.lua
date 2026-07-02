@@ -1,5 +1,6 @@
 return {
   "HiPhish/rainbow-delimiters.nvim",
+  event = "VeryLazy",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = function()
     vim.g.rainbow_delimiters = {

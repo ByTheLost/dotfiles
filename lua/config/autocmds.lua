@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
     if vim.bo[args.buf].filetype == "snacks_dashboard" then
       vim.opt.showtabline = 0
-      vim.opt.laststatus = 0
+      vim.opt_local.laststatus = 0
 
       vim.api.nvim_set_hl(0, "StatusLine", {
         bg = "NONE",

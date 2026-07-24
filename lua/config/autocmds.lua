@@ -1,14 +1,5 @@
 -- config/autocmds.lua
 
-vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
-  callback = function()
-    vim.schedule(function()
-      vim.api.nvim_set_hl(0, "StatusLine", { fg = "NONE", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "NONE", bg = "NONE" })
-    end)
-  end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "javascript",
@@ -36,18 +27,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-  callback = function()
-    vim.api.nvim_set_hl(0, "NavicIconsFunction", { fg = "#bd93f9" })
-    vim.api.nvim_set_hl(0, "NavicIconsMethod", { fg = "#8be9fd" })
-    vim.api.nvim_set_hl(0, "NavicIconsClass", { fg = "#ff79c6" })
-    vim.api.nvim_set_hl(0, "NavicIconsVariable", { fg = "#50fa7b" })
-
-    vim.api.nvim_set_hl(0, "NavicText", { fg = "#cdd6f4" })
-    vim.api.nvim_set_hl(0, "NavicSeparator", { fg = "#6272a4" })
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function(args)
     if vim.bo[args.buf].filetype == "snacks_dashboard" then
@@ -71,6 +50,7 @@ vim.api.nvim_create_autocmd("FileType", {
     if vim.bo[args.buf].filetype == "snacks_dashboard" then
       vim.opt.showtabline = 0
       vim.opt_local.laststatus = 0
+      vim.opt_local.statuscolumn = ""
 
       vim.api.nvim_set_hl(0, "StatusLine", {
         bg = "NONE",
@@ -96,5 +76,38 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
     else
       vim.wo.statusline = nil
     end
+  end,
+})
+
+-- Plugin update notification on startup (via snacks.nvim)
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    vim.defer_fn(function()
+      local ok, status = pcall(require, "lazy.status")
+      if not ok then return end
+
+      if status.has_updates() then
+        local checker = require("lazy.manage.checker")
+        local count = #checker.updated
+        local header = count == 1
+            and "1 plugin update available:"
+            or count .. " plugin updates available:"
+
+        local lines = { header }
+        for _, name in ipairs(checker.updated) do
+          table.insert(lines, "  • " .. name)
+        end
+        local msg = table.concat(lines, "\n")
+        vim.notify(msg, vim.log.levels.INFO, { title = "Plugin Updates" })
+      end
+    end, 3000)
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "json",
+  callback = function()
+    vim.bo.commentstring = "// %s"
   end,
 })

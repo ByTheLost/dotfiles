@@ -1,0 +1,18 @@
+onboarding = false
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[ui]
+agent_panel_sort = "spaces"
+host_cursor = "native"
+
+[terminal]
+default_shell = "fish"
+shell_mode = "non_login"
+
+[ui.sound]
+enabled = false
+
+[update]
+channel = "stable"

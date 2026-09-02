@@ -20,7 +20,7 @@ return {
         "mason",
         "neo-tree",
         "notify",
-        "TelescopePromptePrompt",
+        "TelescopePrompt",
         "toggleterm",
         "trouble",
         "oil",

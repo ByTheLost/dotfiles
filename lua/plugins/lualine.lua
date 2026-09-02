@@ -3,12 +3,7 @@
 
 local theme = require("config.themes")
 
-local lualine_theme
-if theme.colorscheme == "catppuccin" then
-  lualine_theme = require("catppuccin.utils.lualine")()
-else
-  lualine_theme = theme.colorscheme
-end
+local lualine_theme = require("config.lualine_theme").get(theme.colorscheme)
 
 -- =========================
 -- MODE (más limpio)
@@ -43,16 +38,29 @@ local function oil_path()
 end
 
 -- =========================
--- FILE INFO (nuevo)
+-- FILE INFO (cached size)
 -- =========================
+local cached_size = 0
+
+local function update_size()
+  local path = vim.fn.expand("%:p")
+  if path == "" then
+    cached_size = 0
+    return
+  end
+  local size = vim.fn.getfsize(path)
+  cached_size = size > 0 and size or 0
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+  callback = update_size,
+})
+
 local function file_info()
   local filename = vim.fn.expand("%:t")
-  if filename == "" then return " No File" end
+  if filename == "" then return " No File" end
 
-  local size = vim.fn.getfsize(vim.fn.expand("%:p"))
-  if size < 0 then size = 0 end
-
-  local kb = math.floor(size / 1024)
+  local kb = math.floor(cached_size / 1024)
 
   local ok, devicons = pcall(require, "nvim-web-devicons")
 
@@ -61,7 +69,6 @@ local function file_info()
     icon = devicons.get_icon(filename, vim.fn.expand("%:e"), { default = true }) or ""
   end
 
-  -- return string.format("%s %s (%dKB)", icon, filename, kb)
   return string.format("%s %s  •  %dKB", icon, filename, kb)
 end
 

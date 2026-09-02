@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPre", "BufNewfile" },
+  event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
 
   config = function()
@@ -22,6 +22,7 @@ return {
         "c",
         "cpp",
         "rust",
+        "sql"
       },
 
       highlight = {

@@ -19,10 +19,8 @@ return {
 
       integrations = {
         treesitter = true,
-        lsp_trouble = true,
-        cmp = true,
+        trouble = true,
         gitsigns = true,
-        telescope = true,
 
         indent_blankline = {
           enabled = true,
@@ -41,42 +39,23 @@ return {
       },
 
       overrides = function()
-        if not theme.transparent then
-          return {}
-        end
-
-        return highlights.transparent_overrides()
+        return highlights.overrides(theme, "catppuccin")
       end,
     })
 
-    vim.api.nvim_create_autocmd("ColorScheme", {
-      pattern = "catppuccin",
+    -- Safety net: catppuccin re-aplica highlights internamente después de overrides.
+    -- Aplica TODOS los overrides via nvim_set_hl directo (más confiable que overrides).
+    local function reapply_overrides()
+      local o = highlights.overrides(theme, "catppuccin")
+      for group, attrs in pairs(o) do
+        vim.api.nvim_set_hl(0, group, attrs)
+      end
+    end
+
+    vim.api.nvim_create_autocmd("VimEnter", {
+      once = true,
       callback = function()
-        if not theme.transparent then
-          return
-        end
-
-        local hl = vim.api.nvim_set_hl
-
-        -- Base UI
-        hl(0, "Normal", { bg = "NONE" })
-        hl(0, "NormalNC", { bg = "NONE" })
-        hl(0, "NormalFloat", { bg = "NONE" })
-        hl(0, "FloatBorder", { bg = "NONE" })
-        hl(0, "FloatTitle", { bg = "NONE" })
-
-        -- Menu / completion
-        hl(0, "Pmenu", { bg = "NONE" })
-        hl(0, "PmenuSel", { bg = "#44475a" })
-
-        -- Telescope
-        hl(0, "TelescopeNormal", { bg = "NONE" })
-        hl(0, "TelescopePromptNormal", { bg = "NONE" })
-        hl(0, "TelescopeResultsNormal", { bg = "NONE" })
-        hl(0, "TelescopePreviewNormal", { bg = "NONE" })
-
-        -- Cursor line (opcional)
-        hl(0, "CursorLine", { bg = "NONE" })
+        vim.schedule(reapply_overrides)
       end,
     })
   end,

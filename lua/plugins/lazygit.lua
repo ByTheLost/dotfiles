@@ -9,6 +9,7 @@ return {
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "folke/snacks.nvim",
   },
   keys = {
     {

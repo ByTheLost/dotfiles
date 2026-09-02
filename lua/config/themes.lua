@@ -1,7 +1,7 @@
 local M = {}
 
 -- Options: dracula, tokyonight, catppuccin
-M.colorscheme = "catppuccin"
+M.colorscheme = "tokyonight"
 M.transparent = true
 
 return M

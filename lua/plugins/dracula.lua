@@ -15,20 +15,9 @@ return {
       italic_keyword = true,
 
       overrides = function()
-        if not theme.transparent then
-          return {
-            CursorLineNr = { fg = "#FFD700", bold = true },
-
-            Pmenu = { bg = "#282a36" },
-            PmenuSel = { bg = "#44475a" },
-
-            BlinkCmpLabel = { bg = "#282a36" },
-            BlinkCmpKind = { bg = "#282a36" },
-          }
-        end
-
-        return theme.transparent and highlights.transparent_overrides() or {}
+        return highlights.overrides(theme, "dracula")
       end,
     })
   end,
 }
+

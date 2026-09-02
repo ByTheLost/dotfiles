@@ -8,7 +8,7 @@ return {
     marks = {
       persist = true,
       persist_path = vim.fn.stdpath("data") .. "/atone_marks.json",
-      finders = { "fzf-lua", "telescope", "builtin" },
+      finders = { "builtin" },
     },
 
     auto_attach = {

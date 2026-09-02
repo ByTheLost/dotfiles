@@ -28,7 +28,12 @@ return {
       menu = {
         border = "rounded",
         draw = {
+          gap = 1,
           treesitter = { "lsp" },
+          columns = {
+            { "kind_icon", "label", gap = 2 },
+            { "kind", "label_description", gap = 1 },
+          },
         },
       },
 
@@ -66,19 +71,5 @@ return {
 
   config = function(_, opts)
     require("blink.cmp").setup(opts)
-
-    vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = "#bd93f9" })
-    vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { fg = "#bd93f9" })
-    vim.api.nvim_set_hl(0, "BlinkCmpLabel", { bg = "none" })
-    vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", { bg = "none" })
-
-    vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", {
-      bg = "none",
-      fg = "#8be9fd",
-    })
-
-    vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", {
-      bg = "#44475a",
-    })
   end,
 }

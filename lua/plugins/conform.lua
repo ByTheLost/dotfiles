@@ -45,6 +45,7 @@ return {
       json = { "prettier" },
       sh = { "shfmt" },
       fish = { "fish_indent" },
+      sql = { lsp_format = "fallback" },
     },
 
     format_on_save = function(bufnr)

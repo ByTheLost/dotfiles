@@ -69,7 +69,8 @@ local function file_info()
     icon = devicons.get_icon(filename, vim.fn.expand("%:e"), { default = true }) or ""
   end
 
-  return string.format("%s %s  •  %dKB", icon, filename, kb)
+  -- return string.format("%s %s  •  %dKB", icon, filename, kb)
+  return string.format("%s  %s  •  %dKB", icon, filename, kb)
 end
 
 -- =========================
@@ -149,7 +150,25 @@ return {
         "diagnostics",
         "encoding",
         "fileformat",
-        "filetype",
+        {
+          function()
+            local devicons = require("nvim-web-devicons")
+            local filetype = vim.bo.filetype
+            local icon, color = devicons.get_icon_by_filetype(filetype)
+
+            if not icon then
+              return filetype
+            end
+
+            return icon .. "  " .. filetype
+          end,
+          color = function()
+            local devicons = require("nvim-web-devicons")
+            local _, color = devicons.get_icon_by_filetype(vim.bo.filetype)
+
+            return color and { fg = color } or nil
+          end,
+        },
       },
 
       lualine_y = {

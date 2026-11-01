@@ -1,3 +1,17 @@
-AUDITORIA_NVIM.md
+# Personal and local data
+.grip/
+fish/fish_variables
+
+# Local application state
 .atl/
 .opencode/
+
+# Temporary and backup files
+*.bak
+*.backup
+*~
+*.swp
+*.swo
+
+# Local documentation
+AUDITORIA_NVIM.md
